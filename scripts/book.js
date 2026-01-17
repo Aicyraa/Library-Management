@@ -1,5 +1,14 @@
+
 export default class Book {
+   /**
+    * @param {string} title - The title of the book
+    * @param {string} author - The author of the book
+    * @param {number} page - The number of pages
+    * @param {string} genre - The genre of the book
+    * @param {boolean} hasRead - Whether the book has been read
+    */
    constructor(title, author, page, genre, hasRead) {
+      this.id = crypto.randomUUID();
       this.title = title;
       this.author = author;
       this.page = page;

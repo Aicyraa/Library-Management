@@ -1,6 +1,8 @@
 const storageUtil = {
    get: function() {
-      return JSON.parse(localStorage.getItem("books"))
+      let raw = localStorage.getItem("books") 
+      return raw == null ? [] : JSON.parse(raw);  
+     
    },
 
    set: function(books) {
