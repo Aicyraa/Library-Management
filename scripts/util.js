@@ -8,4 +8,6 @@ const storageUtil = {
    }
 }
 
-
+export {
+   storageUtil,
+}

@@ -1,4 +1,4 @@
-class Book {
+export default class Book {
    constructor(title, author, page, genre, hasRead) {
       this.title = title;
       this.author = author;
@@ -36,3 +36,4 @@ class Book {
       return "Success"
    }
 }
+
