@@ -4,4 +4,6 @@
 
 
 
+> all the icons came from google fonts
+> logo came from svgrepo; author: soco-st
 > Copyright (Aicyra) 2026 <br>All rights reserve.
