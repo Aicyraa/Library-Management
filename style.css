@@ -439,21 +439,35 @@ body {
    background-color: var(--biography-purple);
 }
 
-.card-top > .edit {
+.card-top > .settings {
    background-color: var(--badge-bg);
-   width: 25px;
+   width: 1.2rem;
    position: absolute;
-   top: 8px;
-   left: 8px;
    padding: 4px;
    border-radius: 8px;
    opacity: 0;
    transition: 200ms ease-in-out;
+   transform: scale(.7);
 }
 
-.card-top:hover > .edit {
+.edit {
+   top: 8px;
+   left: 0.5rem;
+}
+
+.delete {
+   top: 2rem;
+   left: 0.5rem;
+}
+
+.card-top:hover > .edit, .card-top:hover > .delete {
    opacity: 1;
    cursor: pointer;
+   transform: scale(1);
+}
+
+.edit:hover, .delete:hover {
+   transform: scale(1.5) !important;
 }
 
 .badge {
