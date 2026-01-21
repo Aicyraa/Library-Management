@@ -5,12 +5,71 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="svg/logo.svg" type="image/x-icon" />
       <link rel="stylesheet" href="style.css" />
-      <script src="script.js" defer></script>
+      <script src="scripts/ui.util.js"></script>
+      <script src="script.js" defer type="module"></script>
       <title>Book Management</title>
    </head>
    <body>
+      <!-- Overlay -->
+      <div class="overlay" id="modal-overlay"></div>
+      <!-- Modal -->
+      <div class="form-modal" id="form-modal">
+         <div class="form-modal-header">
+            <h2 class="form-modal-title">Add New Book</h2>
+            <button class="form-modal-close" id="modal-close">
+               <img src="svg/close.svg" alt="close" />
+            </button>
+         </div>
+         <form class="form-modal-body" id="book-form">
+            <div class="form-group">
+               <label for="title" class="form-label">Title</label>
+               <input type="text" name="title" id="book-title" class="form-input" placeholder="Enter book title" required />
+            </div>
+            <div class="form-group">
+               <label for="category" class="form-label">Category</label>
+               <select name="category" id="book-category" class="form-input">
+                  <option value="fiction">Fiction</option>
+                  <option value="self-help">Self-Help</option>
+                  <option value="history">History</option>
+                  <option value="finance">Finance</option>
+                  <option value="biography">Biography</option>
+                  <option value="sci-fi">Sci-Fi</option>
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="author" class="form-label">Author</label>
+               <input type="text" name="author" id="book-author" class="form-input" placeholder="Enter author name" required />
+            </div>
+            <div class="form-row">
+               <div class="form-group">
+                  <label for="page" class="form-label">Total Pages</label>
+                  <input type="number" name="page" id="book-pages" class="form-input" placeholder="e.g. 320" required />
+               </div>
+               <div class="form-group">
+                  <label for="progress" class="form-label">Progress (%)</label>
+                  <input type="number" name="progress" id="book-progress" class="form-input" placeholder="0-100" min="0" max="100" />
+               </div>
+            </div>
+            <div class="form-group">
+               <label class="form-label">Card Color</label>
+               <div class="form-colors">
+                  <span class="color-swatch active" data-bg="linear-gradient(135deg, #8B1A1A, #5C1212)" title="Fiction Red"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #0D7377, #074244)" title="Self-Help Teal"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #1A6985, #0F4A5E)" title="Self-Help Blue"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #6B3FA0, #4A2C6F)" title="Biography Purple"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #C2185B, #8B1240)" title="Sci-Fi Pink"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #2E7D32, #1B5E20)" title="Nature Green"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #E65100, #BF360C)" title="Orange"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #37474F, #263238)" title="Dark Gray"></span>
+               </div>
+            </div>
+            <div class="form-actions">
+               <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+               <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+         </form>
+      </div>
       <!-- Navbar -->
-      <div class="overlay"></div>
       <div class="navbar">
          <div class="navbar-left">
             <img src="svg/logo.svg" alt="" id="logo" />
@@ -243,7 +302,7 @@
                <!-- Book 2 -->
                <div class="book-card">
                   <div class="card-top self-help-green-bg">
-                     <img class="edit" src="svg/edit.svg" alt="">
+                     <img class="edit" src="svg/edit.svg" alt="" />
                      <div class="badge">Self-Help</div>
                      <svg
                         width="200"
@@ -274,9 +333,13 @@
                   <div class="card-bottom">
                      <h3 class="book-title">Atomic Habits</h3>
                      <div class="book-meta">
-                        <img class="book-meta-icon" src="svg/person.svg" alt="">
+                        <img
+                           class="book-meta-icon"
+                           src="svg/person.svg"
+                           alt=""
+                        />
                         <span class="book-author">James Clear</span>
-                        <img class="book-meta-icon" src="svg/page.svg" alt="">
+                        <img class="book-meta-icon" src="svg/page.svg" alt="" />
                         <span class="book-pages">320 pages</span>
                      </div>
                      <div class="progress-section">
