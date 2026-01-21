@@ -1,16 +1,534 @@
+:root {
+   /* Book Card Colors */
+   --fiction-red: hsl(0, 69%, 33%);
+   --self-help-green: hsl(163, 81%, 27%);
+   --self-help-blue: hsl(194, 86%, 33%);
+   --biography-purple: hsl(267, 60%, 44%);
+   --sci-fi-pink: hsl(331, 60%, 49%);
+   --history-red: hsl(0, 74%, 42%);
+
+   /* UI Colors */
+   --primary-purple: hsl(244, 77%, 62%);
+   --background-white: hsl(0, 0%, 100%);
+   --text-dark: hsl(215, 28%, 17%);
+   --text-gray: hsl(220, 9%, 46%);
+
+   /* Stats Colors */
+   --stats-blue-bg: hsl(210, 100%, 96%);
+   --stats-blue-text: hsl(210, 100%, 50%);
+   --stats-green-bg: hsl(150, 100%, 96%);
+   --stats-green-text: hsl(150, 100%, 35%);
+   --stats-orange-bg: hsl(30, 100%, 96%);
+   --stats-orange-text: hsl(30, 100%, 50%);
+   --stats-purple-bg: hsl(260, 100%, 96%);
+   --stats-purple-text: hsl(260, 100%, 60%);
+
+   /* Progress Bar */
+   --progress-black: hsl(0, 0%, 0%);
+   --progress-gray: hsl(216, 12%, 84%);
+
+   /* Badge Background */
+   --badge-bg: hsl(220, 14%, 96%);
+
+   /* Header/Nav */
+   --nav-gray: hsl(210, 20%, 98%);
+
+   /* shadow */
+   --shadow: hsl(215, 10%, 17%, 0.1);
+
+   /* Font */
+   --font-family: 'Courier New', Courier, monospace;
+}
+
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
 }
 
-/* svg */
-#filter-icon {
+body {
+   font-family: var(--font-family);
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+   position: relative; /* Ensure it stays above sidebar on mobile if needed */
+   z-index: 60;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   padding: 0.5rem 1.5rem;
+   min-height: 3.5rem;
+   height: auto;
+   background-color: var(--nav-gray);
+   border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-left {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+#logo {
+   width: 32px;
+   height: 32px;
+}
+
+.navbar #text {
+   display: flex;
+   flex-direction: column;
+}
+
+.navbar #text p:nth-child(1) {
+   font-weight: bold;
+   font-size: 1rem;
+   color: var(--text-dark);
+}
+
+.navbar #text p:nth-child(2) {
+   font-size: 0.75rem;
+   color: var(--text-gray);
+}
+
+/* Visibility Utilities */
+.mobile-only { display: none !important; }
+.desktop-only { display: flex; }
+
+/* Main Layout */
+.main {
+   display: flex;
+   flex: 1;
+   overflow: hidden;
+   position: relative;
+}
+
+/* Sidebar */
+.sidebar-container {
+   width: 280px;
+   background-color: var(--background-white);
+   border-right: 1px solid #e5e7eb;
+   display: flex;
+   flex-direction: column;
+   padding: 1.5rem;
+   overflow-y: auto;
+   transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+   position: relative;
+   z-index: 10;
+}
+
+/* Sidebar Closed State */
+.sidebar-container.closed {
+   width: 70px; /* Collapsed width */
+   padding: 1.5rem 0.5rem;
+}
+
+.sidebar-header {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   margin-bottom: 1.5rem;
+   min-height: 32px;
+}
+
+/* Center button when sidebar is closed */
+.sidebar-container.closed .sidebar-header {
+   justify-content: center;
+   margin-bottom: 0;
+}
+
+/* Hide content when sidebar is closed */
+.sidebar-container.closed #sidebar-title,
+.sidebar-container.closed .sidebar-content,
+.sidebar-container.closed .sidebar-divider,
+.sidebar-container.closed .search-wrapper {
+   display: none;
+}
+
+/* Sidebar Toggle Buttons (Shared Styles) */
+.sidebar-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-btn:hover {
+    background-color: #f3f4f6;
+}
+
+.sidebar-btn img {
+    filter: brightness(0) saturate(100%); /* Ensure icons are black/visible */
+}
+
+.icon-filter, .icon-close {
    width: 24px;
    height: 24px;
-   fill: none;
-   stroke: currentColor;
-   stroke-width: 2;
-   stroke-linecap: round;
-   stroke-linejoin: line;
+}
+
+/* Default state (Sidebar Open): Show Close, Hide Filter */
+.icon-filter { display: none; }
+.icon-close { display: block; }
+
+/* In Closed State (managed by JS class on button) */
+.sidebar-btn.closed .icon-filter { display: block; }
+.sidebar-btn.closed .icon-close { display: none; }
+
+#sidebar-title {
+   font-size: 1.25rem;
+   font-weight: bold;
+   color: var(--text-dark);
+   white-space: nowrap;
+}
+
+.sidebar-content {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+   opacity: 1;
+   transition: opacity 0.2s ease;
+}
+
+.sidebar-group {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.sidebar-label {
+   font-size: 0.875rem;
+   font-weight: 600;
+   color: var(--text-dark);
+   white-space: nowrap;
+}
+
+.search-wrapper {
+   position: relative;
+}
+
+.search-icon {
+   position: absolute;
+   left: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 16px;
+   height: 16px;
+   opacity: 0.5;
+}
+
+#sidebar-search {
+   width: 100%;
+   padding: 0.5rem 0.5rem 0.5rem 2.2rem;
+   border: 1px solid #e5e7eb;
+   border-radius: 6px;
+   background-color: #f9fafb;
+   font-family: inherit;
+}
+
+#sidebar-sort {
+   padding: 0.5rem;
+   border: 1px solid #e5e7eb;
+   border-radius: 6px;
+   background-color: #f9fafb;
+   font-family: inherit;
+}
+
+.sidebar-divider {
+   height: 1px;
+   background-color: #e5e7eb;
+}
+
+.sidebar-category {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.25rem 0;
+}
+
+.category-text {
+   color: var(--text-dark);
+   white-space: nowrap;
+}
+
+
+/* Main Book Container */
+.book-container {
+   flex: 1;
+   background-color: #f9fafb;
+   padding: 2rem;
+   overflow-y: auto;
+}
+
+.book-navbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 2rem;
+}
+
+#book-navbar-count {
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--text-dark);
+}
+
+#book-navbar-add {
+   background-color: var(--text-dark);
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 6px;
+   font-family: inherit;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+/* Statistics */
+.books-status {
+   background-color: white;
+   padding: 1.5rem;
+   border-radius: 12px;
+   margin-bottom: 2rem;
+   border: 1px solid #e5e7eb;
+}
+
+.status-title {
+   font-size: 1.1rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   color: var(--text-dark);
+}
+
+.status-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 1.5rem;
+}
+
+.status-card {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.status-icon-wrapper {
+   width: 48px;
+   height: 48px;
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+}
+
+.status-icon-wrapper svg {
+   width: 24px;
+   height: 24px;
+}
+
+.status-icon-wrapper.blue { background-color: var(--stats-blue-bg); color: var(--stats-blue-text); }
+.status-icon-wrapper.green { background-color: var(--stats-green-bg); color: var(--stats-green-text); }
+.status-icon-wrapper.orange { background-color: var(--stats-orange-bg); color: var(--stats-orange-text); }
+.status-icon-wrapper.purple { background-color: var(--stats-purple-bg); color: var(--stats-purple-text); }
+
+.status-info {
+   display: flex;
+   flex-direction: column;
+   min-width: 0;
+}
+
+.status-label {
+   font-size: 0.875rem;
+   color: var(--text-gray);
+   margin-bottom: 0.25rem;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.status-value {
+   font-size: 1.25rem;
+   font-weight: 700;
+   color: var(--text-dark);
+}
+
+/* Books Grid */
+.books {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+   gap: 1.5rem;
+}
+
+.book-card {
+   background-color: white;
+   border-radius: 12px;
+   overflow: hidden;
+   border: 1px solid #e5e7eb;
+   display: flex;
+   flex-direction: column;
+   transition: transform 0.2s;
+}
+
+.book-card:hover {
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+   transform: translateY(-2px);
+}
+
+.card-top {
+   height: 180px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.card-top.fiction-bg { background-color: var(--fiction-red); }
+.card-top.self-help-green-bg { background-color: var(--self-help-green); }
+.card-top.self-help-blue-bg { background-color: var(--self-help-blue); }
+.card-top.biography-bg { background-color: var(--biography-purple); }
+
+.badge {
+   position: absolute;
+   top: 1rem;
+   right: 1rem;
+   background-color: rgba(255, 255, 255, 0.9);
+   padding: 0.25rem 0.75rem;
+   border-radius: 100px;
+   font-size: 0.75rem;
+   font-weight: 600;
+   color: var(--text-dark);
+}
+
+.book-icon {
+   width: 64px;
+   height: 64px;
+   color: rgba(255, 255, 255, 0.8);
+}
+
+.card-bottom {
+   padding: 1.5rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.book-title {
+   font-size: 1.1rem;
+   font-weight: 700;
+   color: var(--text-dark);
+}
+
+.book-meta {
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+   font-size: 0.875rem;
+   color: var(--text-gray);
+   font-weight: 600;
+}
+
+.progress-section {
+   margin-top: auto;
+}
+
+.progress-label {
+   display: flex;
+   justify-content: space-between;
+   font-size: 0.75rem;
+   color: var(--text-dark);
+   font-weight: 600;
+   margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+   width: 100%;
+   height: 8px;
+   background-color: var(--progress-gray);
+   border-radius: 4px;
+   overflow: hidden;
+}
+
+.progress-fill {
+   height: 100%;
+   background-color: var(--progress-black);
+   border-radius: 4px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+   /* Layout utilities */
+   .mobile-only { display: flex !important; }
+   .desktop-only { display: none; }
+
+   .navbar {
+       padding: 0.5rem 1rem;
+       /* no special right padding needed if button is in flow */
+   }
+
+   /* Navbar Text: Allow wrap */
+   /* Default behavior with min-height works. */
+
+   /* Sidebar Overlay behavior */
+   .sidebar-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-right: 1px solid #e5e7eb;
+      z-index: 50;
+      width: 260px;
+      transform: translateX(0); /* Open state */
+   }
+
+   /* Closed on mobile means hidden */
+   .sidebar-container.closed {
+      transform: translateX(-100%);
+      width: 260px; /* Override global 70px width */
+      padding: 1.5rem; /* Override global padding reduction */
+   }
+
+   /* Book Navbar responsive */
+   .book-navbar {
+       gap: 1rem;
+   }
+
+   #book-navbar-add {
+       padding: 0.4rem 0.8rem;
+       font-size: 0.9rem;
+   }
+
+   #book-navbar-count {
+       font-size: 1.25rem;
+   }
+
+   /* Statistics Grid Center */
+   .status-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+   }
+
+   .status-card {
+       flex-direction: column;
+       align-items: center;
+       text-align: center;
+       justify-content: center;
+       gap: 0.5rem;
+       padding: 1rem;
+       background-color: #f8fafc;
+       border-radius: 8px;
+   }
+
+   .status-info {
+       align-items: center;
+   }
 }
