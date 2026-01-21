@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="svg/logo.svg" type="image/x-icon">
+      <link rel="shortcut icon" href="svg/logo.svg" type="image/x-icon" />
       <link rel="stylesheet" href="style.css" />
       <script src="script.js" defer></script>
       <title>Book Management</title>
@@ -12,29 +12,28 @@
       <!-- Navbar -->
       <div class="overlay"></div>
       <div class="navbar">
-            <div class="navbar-left">
-               <img src="svg/logo.svg" alt="" id="logo" />
-               <div id="text">
-                  <p>E-Library</p>
-                  <p>Improve and Manage your comprehension</p>
-               </div>
+         <div class="navbar-left">
+            <img src="svg/logo.svg" alt="" id="logo" />
+            <div id="text">
+               <p>E-Library</p>
+               <p>Improve and Manage your comprehension</p>
             </div>
-            <!-- Mobile Toggle Button -->
-            <button id="navbar-toggle" class="sidebar-btn mobile-only">
-               <img src="svg/filter.svg" alt="filter" class="icon-filter">
-               <img src="svg/close.svg" alt="close" class="icon-close">
-            </button>
+         </div>
+         <!-- Mobile Toggle Button -->
+         <button id="navbar-toggle" class="sidebar-btn mobile-only">
+            <img src="svg/filter.svg" alt="filter" class="icon-filter" />
+            <img src="svg/close.svg" alt="close" class="icon-close" />
+         </button>
       </div>
 
       <div class="main">
-
          <!-- Sidebar -->
          <div class="sidebar-container" id="sidebar-container">
             <div class="sidebar-header">
                <!-- Desktop Toggle Button -->
                <button id="sidebar-toggle" class="sidebar-btn desktop-only">
-                  <img src="svg/filter.svg" alt="filter" class="icon-filter">
-                  <img src="svg/close.svg" alt="close" class="icon-close">
+                  <img src="svg/filter.svg" alt="filter" class="icon-filter" />
+                  <img src="svg/close.svg" alt="close" class="icon-close" />
                </button>
                <h4 id="sidebar-title">Filters</h4>
             </div>
@@ -44,8 +43,16 @@
                <div class="sidebar-group">
                   <h4 class="sidebar-label">Search Books</h4>
                   <div class="search-wrapper">
-                     <img src="svg/search.svg" class="search-icon" alt="search">
-                     <input type="search" id="sidebar-search" placeholder="Search by title or author.." />
+                     <img
+                        src="svg/search.svg"
+                        class="search-icon"
+                        alt="search"
+                     />
+                     <input
+                        type="search"
+                        id="sidebar-search"
+                        placeholder="Search by title or author.."
+                     />
                   </div>
                </div>
 
@@ -64,27 +71,52 @@
                <div class="sidebar-group">
                   <h4 class="sidebar-label">Filter by Category</h4>
                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" checked />
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                        checked
+                     />
                      <span class="category-text">All</span>
                   </div>
                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" />
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                     />
                      <span class="category-text">Fiction</span>
                   </div>
                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" />
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                     />
                      <span class="category-text">Self-Help</span>
                   </div>
                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" />
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                     />
                      <span class="category-text">History</span>
                   </div>
                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" />
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                     />
                      <span class="category-text">Finance</span>
                   </div>
-                   <div class="sidebar-category">
-                     <input type="checkbox" name="categories" class="category" />
+                  <div class="sidebar-category">
+                     <input
+                        type="checkbox"
+                        name="categories"
+                        class="category"
+                     />
                      <span class="category-text">Biography</span>
                   </div>
                </div>
@@ -96,15 +128,29 @@
             <div class="book-navbar">
                <h3 id="book-navbar-count">Your Books (12)</h3>
                <button id="book-navbar-add">+ Add Book</button>
-             </div>
+            </div>
 
             <!-- Statistics Section -->
-           <div class="books-status">
+            <div class="books-status">
                <div class="status-title">Reading Statistics</div>
                <div class="status-grid">
                   <div class="status-card">
                      <div class="status-icon-wrapper blue">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="24"
+                           height="24"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="2"
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                        >
+                           <path
+                              d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                           ></path>
+                        </svg>
                      </div>
                      <div class="status-info">
                         <p class="status-label">Total Books</p>
@@ -114,7 +160,25 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper green">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="24"
+                           height="24"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="2"
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                        >
+                           <path
+                              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                           ></path>
+                           <polyline points="14 2 14 8 20 8"></polyline>
+                           <line x1="16" y1="13" x2="8" y2="13"></line>
+                           <line x1="16" y1="17" x2="8" y2="17"></line>
+                           <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
                      </div>
                      <div class="status-info">
                         <p class="status-label">Completed</p>
@@ -124,7 +188,20 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper orange">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="24"
+                           height="24"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="2"
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                        >
+                           <circle cx="12" cy="12" r="10"></circle>
+                           <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
                      </div>
                      <div class="status-info">
                         <p class="status-label">In Progress</p>
@@ -134,7 +211,22 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper purple">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="24"
+                           height="24"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="2"
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                        >
+                           <polyline
+                              points="22 7 13.5 15.5 8.5 10.5 2 17"
+                           ></polyline>
+                           <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>
                      </div>
                      <div class="status-info">
                         <p class="status-label">Avg Progress</p>
@@ -147,39 +239,44 @@
             <!-- Books Grid -->
             <div class="books">
                <!-- Book 1 -->
-               <div class="book-card">
-                  <div class="card-top fiction-bg">
-                     <div class="badge">Fiction</div>
-                     <svg xmlns="http://www.w3.org/2000/svg" class="book-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
-                  </div>
-                  <div class="card-bottom">
-                     <h3 class="book-title">1984</h3>
-                     <div class="book-meta">
-                        <span class="book-author">George Orwell</span>
-                        <span class="book-pages">328 pages</span>
-                     </div>
-                     <div class="progress-section">
-                        <div class="progress-label">
-                           <span>Reading Progress</span>
-                           <span>100%</span>
-                        </div>
-                        <div class="progress-bar">
-                           <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
 
                <!-- Book 2 -->
                <div class="book-card">
                   <div class="card-top self-help-green-bg">
+                     <img class="edit" src="svg/edit.svg" alt="">
                      <div class="badge">Self-Help</div>
-                     <svg xmlns="http://www.w3.org/2000/svg" class="book-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+                     <svg
+                        width="200"
+                        height="200"
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                     >
+                        <g transform="translate(50, 50) scale(1.5)">
+                           <path
+                              d="M 0 -7 v 14"
+                              fill="none"
+                              stroke="white"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                           />
+                           <path
+                              d="M -9 6 a 1 1 0 0 1 -1 -1 V -8 a 1 1 0 0 1 1 -1 h 5 a 4 4 0 0 1 4 4 a 4 4 0 0 1 4 -4 h 5 a 1 1 0 0 1 1 1 v 13 a 1 1 0 0 1 -1 1 h -6 a 3 3 0 0 0 -3 3 a 3 3 0 0 0 -3 -3 z"
+                              fill="none"
+                              stroke="white"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                           />
+                        </g>
+                     </svg>
                   </div>
                   <div class="card-bottom">
                      <h3 class="book-title">Atomic Habits</h3>
                      <div class="book-meta">
+                        <img class="book-meta-icon" src="svg/person.svg" alt="">
                         <span class="book-author">James Clear</span>
+                        <img class="book-meta-icon" src="svg/page.svg" alt="">
                         <span class="book-pages">320 pages</span>
                      </div>
                      <div class="progress-section">
@@ -193,54 +290,6 @@
                      </div>
                   </div>
                </div>
-
-               <!-- Book 3 -->
-               <div class="book-card">
-                  <div class="card-top self-help-blue-bg">
-                     <div class="badge">Self-Help</div>
-                     <svg xmlns="http://www.w3.org/2000/svg" class="book-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
-                  </div>
-                  <div class="card-bottom">
-                     <h3 class="book-title">Deep Work</h3>
-                     <div class="book-meta">
-                        <span class="book-author">Cal Newport</span>
-                        <span class="book-pages">296 pages</span>
-                     </div>
-                     <div class="progress-section">
-                        <div class="progress-label">
-                           <span>Reading Progress</span>
-                           <span>85%</span>
-                        </div>
-                        <div class="progress-bar">
-                           <div class="progress-fill" style="width: 85%"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <!-- Book 4 -->
-               <div class="book-card">
-                   <div class="card-top biography-bg">
-                      <div class="badge">Biography</div>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="book-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
-                   </div>
-                   <div class="card-bottom">
-                      <h3 class="book-title">Educated</h3>
-                      <div class="book-meta">
-                         <span class="book-author">Tara Westover</span>
-                         <span class="book-pages">352 pages</span>
-                      </div>
-                      <div class="progress-section">
-                         <div class="progress-label">
-                            <span>Reading Progress</span>
-                            <span>30%</span>
-                         </div>
-                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 30%"></div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
             </div>
          </div>
       </div>

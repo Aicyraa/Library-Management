@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
    /* Book Card Colors */
    --fiction-red: hsl(0, 69%, 33%);
@@ -37,13 +39,14 @@
    --shadow: hsl(215, 10%, 17%, 0.1);
 
    /* Font */
-   --font-family: 'Courier New', Courier, monospace;
+   --font-family: "Courier New", Courier, monospace;
 }
 
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   font-family: "Montserrat";
 }
 
 body {
@@ -96,8 +99,12 @@ body {
 }
 
 /* Visibility Utilities */
-.mobile-only { display: none !important; }
-.desktop-only { display: flex; }
+.mobile-only {
+   display: none !important;
+}
+.desktop-only {
+   display: flex;
+}
 
 /* Main Layout */
 .main {
@@ -116,7 +123,10 @@ body {
    flex-direction: column;
    padding: 1.5rem;
    overflow-y: auto;
-   transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+   transition:
+      width 0.3s ease,
+      padding 0.3s ease,
+      transform 0.3s ease;
    position: relative;
    z-index: 10;
 }
@@ -151,36 +161,45 @@ body {
 
 /* Sidebar Toggle Buttons (Shared Styles) */
 .sidebar-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   padding: 4px;
+   border-radius: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .sidebar-btn:hover {
-    background-color: #f3f4f6;
+   background-color: #f3f4f6;
 }
 
 .sidebar-btn img {
-    filter: brightness(0) saturate(100%); /* Ensure icons are black/visible */
+   filter: brightness(0) saturate(100%); /* Ensure icons are black/visible */
 }
 
-.icon-filter, .icon-close {
+.icon-filter,
+.icon-close {
    width: 24px;
    height: 24px;
 }
 
 /* Default state (Sidebar Open): Show Close, Hide Filter */
-.icon-filter { display: none; }
-.icon-close { display: block; }
+.icon-filter {
+   display: none;
+}
+.icon-close {
+   display: block;
+}
 
 /* In Closed State (managed by JS class on button) */
-.sidebar-btn.closed .icon-filter { display: block; }
-.sidebar-btn.closed .icon-close { display: none; }
+.sidebar-btn.closed .icon-filter {
+   display: block;
+}
+.sidebar-btn.closed .icon-close {
+   display: none;
+}
 
 #sidebar-title {
    font-size: 1.25rem;
@@ -200,7 +219,7 @@ body {
 .sidebar-group {
    display: flex;
    flex-direction: column;
-   gap: 0.5rem;
+   gap: 0.2rem;
 }
 
 .sidebar-label {
@@ -256,8 +275,8 @@ body {
 .category-text {
    color: var(--text-dark);
    white-space: nowrap;
+   font-size: .85rem;
 }
-
 
 /* Main Book Container */
 .book-container {
@@ -311,7 +330,7 @@ body {
 
 .status-grid {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
    gap: 1.5rem;
 }
 
@@ -336,10 +355,22 @@ body {
    height: 24px;
 }
 
-.status-icon-wrapper.blue { background-color: var(--stats-blue-bg); color: var(--stats-blue-text); }
-.status-icon-wrapper.green { background-color: var(--stats-green-bg); color: var(--stats-green-text); }
-.status-icon-wrapper.orange { background-color: var(--stats-orange-bg); color: var(--stats-orange-text); }
-.status-icon-wrapper.purple { background-color: var(--stats-purple-bg); color: var(--stats-purple-text); }
+.status-icon-wrapper.blue {
+   background-color: var(--stats-blue-bg);
+   color: var(--stats-blue-text);
+}
+.status-icon-wrapper.green {
+   background-color: var(--stats-green-bg);
+   color: var(--stats-green-text);
+}
+.status-icon-wrapper.orange {
+   background-color: var(--stats-orange-bg);
+   color: var(--stats-orange-text);
+}
+.status-icon-wrapper.purple {
+   background-color: var(--stats-purple-bg);
+   color: var(--stats-purple-text);
+}
 
 .status-info {
    display: flex;
@@ -380,7 +411,9 @@ body {
 }
 
 .book-card:hover {
-   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+   box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
    transform: translateY(-2px);
 }
 
@@ -392,19 +425,44 @@ body {
    justify-content: center;
 }
 
-.card-top.fiction-bg { background-color: var(--fiction-red); }
-.card-top.self-help-green-bg { background-color: var(--self-help-green); }
-.card-top.self-help-blue-bg { background-color: var(--self-help-blue); }
-.card-top.biography-bg { background-color: var(--biography-purple); }
+.card-top.fiction-bg {
+   background-color: var(--fiction-red);
+}
+.card-top.self-help-green-bg {
+   background-color: var(--self-help-green);
+}
+.card-top.self-help-blue-bg {
+   background-color: var(--self-help-blue);
+}
+.card-top.biography-bg {
+   background-color: var(--biography-purple);
+}
+
+.card-top > .edit {
+   background-color: var(--badge-bg);
+   width: 25px;
+   position: absolute;
+   top: 8px;
+   left: 8px;
+   padding: 4px;
+   border-radius: 8px;
+   opacity: 0;
+   transition: 200ms ease-in-out;
+}
+
+.card-top:hover > .edit {
+   opacity: 1;
+   cursor: pointer;
+}
 
 .badge {
    position: absolute;
-   top: 1rem;
-   right: 1rem;
+   top: 8px;
+   right: 8px;
    background-color: rgba(255, 255, 255, 0.9);
    padding: 0.25rem 0.75rem;
    border-radius: 100px;
-   font-size: 0.75rem;
+   font-size: 0.65rem;
    font-weight: 600;
    color: var(--text-dark);
 }
@@ -416,10 +474,10 @@ body {
 }
 
 .card-bottom {
-   padding: 1.5rem;
+   padding: 1.2rem 0.7rem;
    display: flex;
    flex-direction: column;
-   gap: 1rem;
+   gap: .5rem;
 }
 
 .book-title {
@@ -428,11 +486,18 @@ body {
    color: var(--text-dark);
 }
 
+.book-meta-icon {
+   width: 1.1rem;
+   height: 1.1rem;
+}
+
 .book-meta {
-   display: flex;
-   flex-direction: column;
-   gap: 0.25rem;
-   font-size: 0.875rem;
+   display: grid;
+   grid-template: repeat(2, 1fr) / 1.3rem 1fr;
+   justify-content: start;
+   align-items: center;
+   gap: 0.15rem;
+   font-size: 0.7rem;
    color: var(--text-gray);
    font-weight: 600;
 }
@@ -467,12 +532,16 @@ body {
 /* Mobile Responsive */
 @media (max-width: 768px) {
    /* Layout utilities */
-   .mobile-only { display: flex !important; }
-   .desktop-only { display: none; }
+   .mobile-only {
+      display: flex !important;
+   }
+   .desktop-only {
+      display: none;
+   }
 
    .navbar {
-       padding: 0.5rem 1rem;
-       /* no special right padding needed if button is in flow */
+      padding: 0.5rem 1rem;
+      /* no special right padding needed if button is in flow */
    }
 
    /* Navbar Text: Allow wrap */
@@ -499,16 +568,16 @@ body {
 
    /* Book Navbar responsive */
    .book-navbar {
-       gap: 1rem;
+      gap: 1rem;
    }
 
    #book-navbar-add {
-       padding: 0.4rem 0.8rem;
-       font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
    }
 
    #book-navbar-count {
-       font-size: 1.25rem;
+      font-size: 1.25rem;
    }
 
    /* Statistics Grid Center */
@@ -518,17 +587,17 @@ body {
    }
 
    .status-card {
-       flex-direction: column;
-       align-items: center;
-       text-align: center;
-       justify-content: center;
-       gap: 0.5rem;
-       padding: 1rem;
-       background-color: #f8fafc;
-       border-radius: 8px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background-color: #f8fafc;
+      border-radius: 8px;
    }
 
    .status-info {
-       align-items: center;
+      align-items: center;
    }
 }
