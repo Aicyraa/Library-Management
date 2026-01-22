@@ -2,6 +2,7 @@ const UIcontainers = {
    overlay: document.querySelector(".overlay"),
    sidebarContainer: document.querySelector("#sidebar-container"),
    modalContainer: document.querySelector("#form-modal"), 
+   colorContainer: document.querySelector(".form-colors"),
 };
 
 function toggleSidebar() {
@@ -24,16 +25,19 @@ function toggleSwatch(event) {
 
 // miscellanous container
 document.addEventListener("DOMContentLoaded", () => {
-   // window related
-   if (window.innerWidth <= 768) {
-      UIcontainers.sidebarContainer.classList.add("closed");
-      document.querySelectorAll(".sidebar-btn").forEach((btn) => btn.classList.add("closed"));
-   }
 
    // Close modal on Escape key
    document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && UIcontainers.modalContainer.classList.contains("active")) { toggleForm();}
    });
+
+   // close the modal when in mobile viewport
+   if (window.innerWidth <= 768) {
+      UIcontainers.sidebarContainer.classList.add("closed");
+      document.querySelectorAll(".sidebar-btn").forEach((btn) => btn.classList.add("closed"));
+   }
+
 });
 
-export { toggleSidebar, toggleForm };
+export default UIcontainers
+export {toggleSidebar, toggleForm, toggleSwatch };

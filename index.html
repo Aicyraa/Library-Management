@@ -5,8 +5,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="svg/logo.svg" type="image/x-icon" />
       <link rel="stylesheet" href="style.css" />
-      <script src="scripts/ui.util.js"></script>
-      <script src="script.js" defer type="module"></script>
+      <!-- <script type="module" src="scripts/ui.util.js"></script> -->
+      <script type="module" src="script.js" defer ></script>
       <title>Book Management</title>
    </head>
    <body>
@@ -53,7 +53,7 @@
             <div class="form-group">
                <label class="form-label">Card Color</label>
                <div class="form-colors">
-                  <span class="color-swatch active" data-bg="linear-gradient(135deg, #8B1A1A, #5C1212)" title="Fiction Red"></span>
+                  <span class="color-swatch selected" data-bg="linear-gradient(135deg, #8B1A1A, #5C1212)" title="Fiction Red"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #0D7377, #074244)" title="Self-Help Teal"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #1A6985, #0F4A5E)" title="Self-Help Blue"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #6B3FA0, #4A2C6F)" title="Biography Purple"></span>
@@ -65,7 +65,7 @@
             </div>
             <div class="form-actions">
                <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
-               <button type="submit" class="btn btn-primary">Add Book</button>
+               <button type="submit" class="btn btn-primary" id="modal-submit">Add Book</button>
             </div>
          </form>
       </div>
@@ -102,16 +102,8 @@
                <div class="sidebar-group">
                   <h4 class="sidebar-label">Search Books</h4>
                   <div class="search-wrapper">
-                     <img
-                        src="svg/search.svg"
-                        class="search-icon"
-                        alt="search"
-                     />
-                     <input
-                        type="search"
-                        id="sidebar-search"
-                        placeholder="Search by title or author.."
-                     />
+                     <img src="svg/search.svg" class="search-icon" alt="search" />
+                     <input type="search" id="sidebar-search" placeholder="Search by title or author.." />
                   </div>
                </div>
 
@@ -130,52 +122,27 @@
                <div class="sidebar-group">
                   <h4 class="sidebar-label">Filter by Category</h4>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                        checked
-                     />
+                     <input type="checkbox" name="categories" class="category" checked />
                      <span class="category-text">All</span>
                   </div>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                     />
+                     <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Fiction</span>
                   </div>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                     />
+                     <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Self-Help</span>
                   </div>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                     />
+                     <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">History</span>
                   </div>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                     />
+                     <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Finance</span>
                   </div>
                   <div class="sidebar-category">
-                     <input
-                        type="checkbox"
-                        name="categories"
-                        class="category"
-                     />
+                     <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Biography</span>
                   </div>
                </div>
@@ -195,20 +162,8 @@
                <div class="status-grid">
                   <div class="status-card">
                      <div class="status-icon-wrapper blue">
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           stroke-width="2"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        >
-                           <path
-                              d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
-                           ></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                         </svg>
                      </div>
                      <div class="status-info">
@@ -219,20 +174,8 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper green">
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           stroke-width="2"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        >
-                           <path
-                              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                           ></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                            <polyline points="14 2 14 8 20 8"></polyline>
                            <line x1="16" y1="13" x2="8" y2="13"></line>
                            <line x1="16" y1="17" x2="8" y2="17"></line>
@@ -247,17 +190,7 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper orange">
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           stroke-width="2"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                            <circle cx="12" cy="12" r="10"></circle>
                            <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
@@ -270,20 +203,8 @@
 
                   <div class="status-card">
                      <div class="status-icon-wrapper purple">
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           stroke-width="2"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        >
-                           <polyline
-                              points="22 7 13.5 15.5 8.5 10.5 2 17"
-                           ></polyline>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                           <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
                            <polyline points="16 7 22 7 22 13"></polyline>
                         </svg>
                      </div>
@@ -305,40 +226,17 @@
                      <img class="settings edit" src="svg/edit.svg" alt="" />
                      <img class="settings delete" src="svg/delete.svg" alt="">
                      <div class="badge">Self-Help</div>
-                     <svg
-                        width="200"
-                        height="200"
-                        viewBox="0 0 100 100"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
+                     <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g transform="translate(50, 50) scale(1.5)">
-                           <path
-                              d="M 0 -7 v 14"
-                              fill="none"
-                              stroke="white"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                           />
-                           <path
-                              d="M -9 6 a 1 1 0 0 1 -1 -1 V -8 a 1 1 0 0 1 1 -1 h 5 a 4 4 0 0 1 4 4 a 4 4 0 0 1 4 -4 h 5 a 1 1 0 0 1 1 1 v 13 a 1 1 0 0 1 -1 1 h -6 a 3 3 0 0 0 -3 3 a 3 3 0 0 0 -3 -3 z"
-                              fill="none"
-                              stroke="white"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                           />
+                           <path d="M 0 -7 v 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                           <path d="M -9 6 a 1 1 0 0 1 -1 -1 V -8 a 1 1 0 0 1 1 -1 h 5 a 4 4 0 0 1 4 4 a 4 4 0 0 1 4 -4 h 5 a 1 1 0 0 1 1 1 v 13 a 1 1 0 0 1 -1 1 h -6 a 3 3 0 0 0 -3 3 a 3 3 0 0 0 -3 -3 z" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </g>
                      </svg>
                   </div>
                   <div class="card-bottom">
                      <h3 class="book-title">Atomic Habits</h3>
                      <div class="book-meta">
-                        <img
-                           class="book-meta-icon"
-                           src="svg/person.svg"
-                           alt=""
-                        />
+                        <img class="book-meta-icon" src="svg/person.svg" alt="" />
                         <span class="book-author">James Clear</span>
                         <img class="book-meta-icon" src="svg/page.svg" alt="" />
                         <span class="book-pages">320 pages</span>

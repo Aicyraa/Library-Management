@@ -680,12 +680,12 @@ body {
 /* Color Swatches */
 .form-colors {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
    gap: 0.5rem;
 }
 
 .color-swatch {
-   aspect-ratio: 1;
+   height: 30px;
    border-radius: 8px;
    cursor: pointer;
    box-shadow: 0 0 3px var(--progress-black);
@@ -723,9 +723,9 @@ body {
 }
 
 .btn {
-   padding: 0.6rem 1.25rem;
+   padding: 0.5rem 1.25rem;
    border-radius: 8px;
-   font-size: 0.8rem;
+   font-size: 0.65rem;
    font-weight: 600;
    font-family: inherit;
    cursor: pointer;

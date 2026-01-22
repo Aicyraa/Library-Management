@@ -40,7 +40,8 @@ function getBookData(formClose) {
 
    return function() {
       const bookData = setData();
-
+      console.log(bookData);
+      
 
       formClose()
    }
