@@ -441,23 +441,23 @@ body {
 
 .card-top > .settings {
    background-color: var(--badge-bg);
-   width: 1.2rem;
+   width: 1.1rem;
    position: absolute;
-   padding: 4px;
-   border-radius: 8px;
+   padding: 2px;
+   border-radius: 4px;
    opacity: 0;
    transition: 200ms ease-in-out;
    transform: scale(.7);
 }
 
 .edit {
-   top: 8px;
-   left: 0.5rem;
+   bottom: 8px;
+   right: 0.5rem;
 }
 
 .delete {
-   top: 2rem;
-   left: 0.5rem;
+   bottom: 8px;
+   right: 2rem;
 }
 
 .card-top:hover > .edit, .card-top:hover > .delete {
@@ -467,7 +467,7 @@ body {
 }
 
 .edit:hover, .delete:hover {
-   transform: scale(1.5) !important;
+   transform: scale(1.2) !important;
 }
 
 .badge {
