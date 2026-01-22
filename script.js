@@ -11,6 +11,16 @@ const UIbtns = {
    addBook: document.querySelector("#modal-submit"),
 };
 
+function generateColor() {
+   document.querySelectorAll(".color-swatch").forEach(color => {
+      console.log(color);
+      
+      const bgColor = color.dataset.bg
+      color.style.background = bgColor;
+   })
+}
+
+
 function getBookData(formClose) {
    
    function setData() {
