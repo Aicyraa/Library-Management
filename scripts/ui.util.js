@@ -14,6 +14,15 @@ function toggleForm() {
    UIcontainers.modalContainer.classList.toggle("active")
 }
 
+function toggleSwatch(event) {
+   document.querySelectorAll(".color-swatch").forEach(swatch => swatch.classList.remove("selected"))
+   const currentSwatch = event.target;
+   if (currentSwatch.classList.contains("color-swatch")) {
+      currentSwatch.classList.add("selected")
+   }
+}
+
+// miscellanous container
 document.addEventListener("DOMContentLoaded", () => {
    // window related
    if (window.innerWidth <= 768) {

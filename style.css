@@ -697,11 +697,11 @@ body {
    transform: scale(1.05);
 }
 
-.color-swatch.active {
+.color-swatch.selected {
    border-color: var(--text-dark);
 }
 
-.color-swatch.active::after {
+.color-swatch.selected::after {
    content: '';
    position: absolute;
    top: 50%;
