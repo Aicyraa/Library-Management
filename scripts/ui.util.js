@@ -3,6 +3,7 @@ const UIcontainers = {
    sidebarContainer: document.querySelector("#sidebar-container"),
    modalContainer: document.querySelector("#form-modal"), 
    colorContainer: document.querySelector(".form-colors"),
+   bookContainer: document.querySelector(".books"),
 };
 
 function toggleSidebar() {
