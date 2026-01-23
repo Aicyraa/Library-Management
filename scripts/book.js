@@ -2,20 +2,20 @@
 export default class Book {
    /**
     * @param {string} title - The title of the book
+    * @param {string} genre - The genre of the book
     * @param {string} author - The author of the book
     * @param {number} page - The number of pages
-    * @param {string} genre - The genre of the book
     * @param {number} progress - Reading progress percentage (0-100)
     * @param {string} coverColor - Cover color hex code
     */
-   constructor(title, author, page, genre, progress = 0, coverColor = '#6366f1') {
-      this.id = crypto.randomUUID();
+   constructor(title, category, author, page, progress = 0, coverColor = '#6366f1') {
       this.title = title;
+      this.category = category;
       this.author = author;
       this.page = page;
-      this.genre = genre;
       this.progress = progress;
       this.coverColor = coverColor;
+      this.id = crypto.randomUUID();
       this.readInfo = {
          readCount: 0,
          readDates: [],
