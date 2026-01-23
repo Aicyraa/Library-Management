@@ -426,27 +426,14 @@ body {
    justify-content: center;
 }
 
-.card-top.fiction-bg {
-   background-color: var(--fiction-red);
-}
-.card-top.self-help-green-bg {
-   background-color: var(--self-help-green);
-}
-.card-top.self-help-blue-bg {
-   background-color: var(--self-help-blue);
-}
-.card-top.biography-bg {
-   background-color: var(--biography-purple);
-}
-
 .card-top > .settings {
-   background-color: var(--badge-bg);
+   background-color: hsl(210, 19%, 66%, 0.2);
    width: 1.1rem;
    position: absolute;
    padding: 2px;
    border-radius: 4px;
    opacity: 0;
-   transition: 200ms ease-in-out;
+   transition: 100ms ease-in-out;
    transform: scale(.7);
 }
 
@@ -468,6 +455,7 @@ body {
 
 .edit:hover, .delete:hover {
    transform: scale(1.2) !important;
+   background-color: hsl(210, 19%, 89%);
 }
 
 .badge {
