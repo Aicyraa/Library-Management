@@ -100,7 +100,7 @@ function bookRemove(parent) {
    UIbtns.addBook.addEventListener("click", saveBookData(toggleForm, renderBookData));
 
    // filter
-   filterElements.search.addEventListener("change", bookSearch);
-   filterElements.sortArrange.addEventListener("change", bookArrange);
-   filterElements.sortCategory.addEventListener("click", bookSort)
+   filterElements.search.addEventListener("input", debounce(bookSearch(renderBookData), 300));
+   filterElements.sortArrange.addEventListener("change", bookArrange(renderBookData));
+   filterElements.sortCategory.addEventListener("click", throttle(bookSort(renderBookData), 200))
 })();
