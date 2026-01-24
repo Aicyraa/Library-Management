@@ -1,7 +1,7 @@
-import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/ui.util.js";
-import { saveBookData, setInputData, modifyBookData } from "./scripts/func.util.js";
-import { storageUtil } from "./scripts/storage.util.js";
-import UIcontainers from "./scripts/ui.util.js";
+import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/util.ui.js";
+import { saveBookData, setInputData, modifyBookData } from "./scripts/util.func.js";
+import { storageUtil } from "./scripts/util.storage.js";
+import UIcontainers from "./scripts/util.ui.js";
 
 
 const UIbtns = {

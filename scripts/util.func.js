@@ -1,5 +1,5 @@
 import Book from "./book.js";
-import { storageUtil } from "./storage.util.js";
+import { storageUtil } from "./util.storage.js";
 
 function modifyBookData(remove, edit) {
    return function (event) {
