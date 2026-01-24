@@ -1,7 +1,8 @@
 import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/ui.util.js";
-import { saveBookData, setInputData, modifyBook } from "./scripts/func.util.js";
+import { saveBookData, setInputData, modifyBookData } from "./scripts/func.util.js";
 import { storageUtil } from "./scripts/storage.util.js";
 import UIcontainers from "./scripts/ui.util.js";
+
 
 const UIbtns = {
    overlay: document.querySelector(".overlay"),
@@ -62,9 +63,10 @@ function renderBookData() {
 }
 
 function bookEdit(parent) {
+   UIbtns.addBook.dataset.mode = "edit";
    const currentElData = storageUtil.get().filter(book => book.id === parent.dataset.id)[0];
-   setInputData(currentElData);
    toggleForm()
+   setInputData(currentElData);
 }
 
 function bookRemove(parent) {
@@ -76,13 +78,17 @@ function bookRemove(parent) {
 (function () {
    renderColor();
    renderBookData();
+   // toggle btn checks if dataset is = to add or edit before openinf the modal
+   // toggle btn sets the text based on condtion before opening the modal
+   // saveBookData has 2 functions; edit and add
+   // saveBookData checks the dataset of the button is set to either add or edit
 
    UIbtns.sidebarBtns.forEach((btns) => btns.addEventListener("click", toggleSidebar));
    UIbtns.modalAddBtn.addEventListener("click", toggleForm);
    UIbtns.modalCloseBtn.addEventListener("click", toggleForm);
    UIbtns.modalCancelBtn.addEventListener("click", toggleForm);
    UIbtns.overlay.addEventListener("click", toggleForm);
-   UIbtns.addBook.addEventListener("click", saveBookData(toggleForm, renderBookData));
    UIcontainers.colorContainer.addEventListener("click", toggleSwatch);
-   UIcontainers.bookContainer.addEventListener("click", modifyBook(bookRemove, bookEdit))
+   UIcontainers.bookContainer.addEventListener("click", modifyBookData(bookRemove, bookEdit))
+   UIbtns.addBook.addEventListener("click", saveBookData(toggleForm, renderBookData));
 })();
