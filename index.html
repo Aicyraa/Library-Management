@@ -15,7 +15,7 @@
       <!-- Modal -->
       <div class="form-modal" id="form-modal">
          <div class="form-modal-header">
-            <h2 class="form-modal-title">Add New Book</h2>
+            <h4 class="form-modal-title">Add New Book</h4>
             <button class="form-modal-close" id="modal-close">
                <img src="svg/close.svg" alt="close" />
             </button>
@@ -42,12 +42,12 @@
             </div>
             <div class="form-row">
                <div class="form-group">
-                  <label for="page" class="form-label">Total Pages</label>
-                  <input type="number" name="page" id="book-pages" class="form-input" placeholder="e.g. 320" required />
+                  <label for="totalPage" class="form-label">Total Pages</label>
+                  <input type="number" name="totalPage" id="book-totalPage" class="form-input" placeholder="e.g. 320" required />
                </div>
                <div class="form-group">
-                  <label for="progress" class="form-label">Progress (%)</label>
-                  <input type="number" name="progress" id="book-progress" class="form-input" placeholder="0-100" min="0" max="100" maxlength="3" />
+                  <label for="currentPage" class="form-label">Current Page</label>
+                  <input type="number" name="currentPage" id="book-currentPage" class="form-input" placeholder="e.g. 150" min="0" />
                </div>
             </div>
             <div class="form-group">
@@ -61,6 +61,14 @@
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #2E7D32, #1B5E20)" title="Nature Green"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #E65100, #BF360C)" title="Orange"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #37474F, #263238)" title="Dark Gray"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #1565C0, #0D47A1)" title="Deep Blue"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #9C27B0, #7B1FA2)" title="Vibrant Purple"></span>
+                  <!-- <span class="color-swatch" data-bg="linear-gradient(135deg, #FF9800, #F57C00)" title="Amber"></span> -->
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #0097A7, #00838F)" title="Cyan"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #7B1FA2, #4A148C)" title="Deep Purple"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #D32F2F, #B71C1C)" title="Bright Red"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #388E3C, #2E7D32)" title="Emerald Green"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #1976D2, #1565C0)" title="Sky Blue"></span>
                </div>
             </div>
             <div class="form-actions">
