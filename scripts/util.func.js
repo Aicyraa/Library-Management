@@ -77,7 +77,7 @@ function saveBookData(closeModal, render) {
       const currentFunc = submitMode.dataset.mode === "add" ? insertBook : updateBook;
       currentFunc();
       closeModal();
-      render()
+      render(storageUtil.get())
 
    }
 }

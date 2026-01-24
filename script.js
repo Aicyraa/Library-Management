@@ -1,7 +1,9 @@
-import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/util.ui.js";
 import { saveBookData, setInputData, modifyBookData } from "./scripts/util.func.js";
 import { storageUtil } from "./scripts/util.storage.js";
+import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/util.ui.js";
 import UIcontainers from "./scripts/util.ui.js";
+import { debounce, throttle } from "./scripts/util.wrapper.js"
+import { bookSearch, bookArrange, bookSort } from "./scripts/util.filters.js";
 
 
 const UIbtns = {
@@ -13,6 +15,12 @@ const UIbtns = {
    addBook: document.querySelector("#modal-submit"),
 };
 
+const filterElements = {
+   search: document.querySelector("#sidebar-search"),
+   sortArrange: document.querySelector("#sidebar-sort"),
+   sortCategory: document.querySelector("#category-parent"),
+}
+
 function renderColor() {
    document.querySelectorAll(".color-swatch").forEach((color) => {
       const bgColor = color.dataset.bg;
@@ -20,9 +28,9 @@ function renderColor() {
    });
 }
 
-function renderBookData() {
+function renderBookData(booksData) {
    UIcontainers.bookContainer.innerHTML = "";
-   storageUtil.get().forEach(book => {
+   booksData.forEach(book => {
       const bookCard = document.createElement("div")
       bookCard.dataset.id = book.id
       bookCard.className = "book-card";
@@ -80,7 +88,7 @@ function bookRemove(parent) {
 
 (function () {
    renderColor();
-   renderBookData();
+   renderBookData(storageUtil.get());
 
    UIbtns.sidebarBtns.forEach((btns) => btns.addEventListener("click", toggleSidebar));
    UIbtns.modalAddBtn.addEventListener("click", toggleForm);
@@ -90,4 +98,9 @@ function bookRemove(parent) {
    UIcontainers.colorContainer.addEventListener("click", toggleSwatch);
    UIcontainers.bookContainer.addEventListener("click", modifyBookData(bookRemove, bookEdit))
    UIbtns.addBook.addEventListener("click", saveBookData(toggleForm, renderBookData));
+
+   // filter
+   filterElements.search.addEventListener("change", bookSearch);
+   filterElements.sortArrange.addEventListener("change", bookArrange);
+   filterElements.sortCategory.addEventListener("click", bookSort)
 })();
