@@ -67,7 +67,7 @@ body {
    padding: 0.5rem 1.5rem;
    min-height: 3.5rem;
    height: auto;
-   background-color: var(--nav-gray);
+   background-color: var(--background-white);
    border-bottom: 1px solid #e5e7eb;
 }
 
@@ -663,7 +663,7 @@ body {
 }
 
 .form-input::placeholder {
-   color: #9ca3af;
+   color: #9ca3af !important;
 }
 
 /* Color Swatches */
