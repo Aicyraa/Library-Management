@@ -19,19 +19,23 @@ function getInputData() {
 
    document.querySelectorAll(".color-swatch").forEach((swatch) => {
       if (swatch.classList.contains("selected")) {
-         bookData["bgColor"] = swatch.dataset.bg;
+         console.log(swatch.dataset.bg);
+         bookData["coverColor"] = swatch.dataset.bg;
       }
    });
-
    return bookData;
 }
 
 function setInputData(bookObj){
-   const bookData = Object.values(bookObj);
    const swatches = Array.from(document.querySelectorAll(".color-swatch"))
    const formInputs = document.querySelectorAll(".form-input")
+   
+   formInputs[0].value = bookObj.title;
+   formInputs[1].value = bookObj.category;
+   formInputs[2].value = bookObj.author;
+   formInputs[3].value = bookObj.totalPage;
+   formInputs[4].value = bookObj.currentPage;
 
-   for(let i = 0; i < bookData.length - 3; i++) { formInputs[i].value = bookData[i]}
    swatches.forEach(swatch => swatch.dataset.bg === bookObj.coverColor ? swatch.classList.add("selected") : swatch.classList.remove("selected") )
 }
 
@@ -41,15 +45,32 @@ function saveBookData(closeModal, render) {
 
    function insertBook() {
       const newBookData = getInputData();
-      const newBook = new Book(newBookData.title, newBookData.category, newBookData.author, newBookData.page, newBookData.progress, newBookData.bgColor);
+      const newBook = new Book(newBookData.title, newBookData.category, newBookData.author, newBookData.totalPage, newBookData.currentPage, newBookData.coverColor);
       storageUtil.set([...storageUtil.get(), newBook])
    }
 
    function updateBook() {
-      submitMode.dataset.mode = "add"
       const newBookData = getInputData();
-      // get the target element and replace its value with the new one
-      // const currentBookData = 
+      const books = storageUtil.get();
+      const targetBookIndex = books.findIndex(book => book.id === window.targetEditID);
+      
+      if (targetBookIndex !== -1) {
+         const updatedBook = new Book(
+            newBookData.title,
+            newBookData.category,
+            newBookData.author,
+            newBookData.totalPage,
+            newBookData.currentPage,
+            newBookData.coverColor
+         );
+
+         updatedBook.id = books[targetBookIndex].id;
+         updatedBook.readInfo = books[targetBookIndex].readInfo;
+
+         books[targetBookIndex] = updatedBook;
+         storageUtil.set(books);
+         window.targetEditID = null
+      }
    }
 
    return function() {

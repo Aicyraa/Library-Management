@@ -45,7 +45,10 @@ function renderBookData() {
                <img class="book-meta-icon" src="svg/person.svg" alt="" />
                <span class="book-author">${book.author}</span>
                <img class="book-meta-icon" src="svg/page.svg" alt="" />
-               <span class="book-pages">${book.page} pages</span>
+               <div class="book-meta-pages"> 
+                  <span class="book-total-page">${book.totalPage} pages</span>
+                  <span class="book-current-page">(${book.currentPage}/${book.totalPage})</span>
+               </div>
             </div>
             <div class="progress-section">
                <div class="progress-label">
@@ -63,8 +66,8 @@ function renderBookData() {
 }
 
 function bookEdit(parent) {
-   UIbtns.addBook.dataset.mode = "edit";
    const currentElData = storageUtil.get().filter(book => book.id === parent.dataset.id)[0];
+   window.targetEditID = currentElData.id
    toggleForm()
    setInputData(currentElData);
 }
@@ -78,10 +81,6 @@ function bookRemove(parent) {
 (function () {
    renderColor();
    renderBookData();
-   // toggle btn checks if dataset is = to add or edit before openinf the modal
-   // toggle btn sets the text based on condtion before opening the modal
-   // saveBookData has 2 functions; edit and add
-   // saveBookData checks the dataset of the button is set to either add or edit
 
    UIbtns.sidebarBtns.forEach((btns) => btns.addEventListener("click", toggleSidebar));
    UIbtns.modalAddBtn.addEventListener("click", toggleForm);

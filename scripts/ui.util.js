@@ -11,30 +11,32 @@ function toggleSidebar() {
    document.querySelectorAll(".sidebar-btn").forEach((btn) => btn.classList.toggle("closed"));
 }
 
-function toggleForm() {
-   
+function toggleForm(event) {
    function clearBookData() {
       const formInputs = document.querySelectorAll(".form-input");
-      const swacthes = document.querySelectorAll(".color-swatch");
-      debugger
+      const swatches = document.querySelectorAll(".color-swatch");
       formInputs.forEach((form, index) => index === 1 ? form.value = "Fiction" : form.value = "");
-      swacthes.forEach((swatch, index) => index === 0 ? swatch.classList.add("selected") : swatch.classList.remove("selected"))
+      swatches.forEach((swatch, index) => index === 0 ? swatch.classList.add("selected") : swatch.classList.remove("selected"))
    }
-
-   console.log("Calling");
+   
    clearBookData();
-   const submitBtn = document.querySelector("#modal-submit");
-   if (submitBtn.dataset.mode == "add") submitBtn.textContent = "Add Book"
-   else if (submitBtn.dataset.mode == "edit") submitBtn.textContent = "Update Book"
+   const submitBtn = document.querySelector("#modal-submit");   
+   
+   if (event?.currentTarget?.id == "book-navbar-add") {submitBtn.dataset.mode = "add"}
+   else if (event?.currentTarget == undefined) {submitBtn.dataset.mode = "edit"}
+
+   if (submitBtn.dataset.mode == "add") { submitBtn.textContent = "Add Book" }
+   else if (submitBtn.dataset.mode == "edit") { submitBtn.textContent = "Update Book" }
    
    UIcontainers.overlay.classList.toggle("active")
    UIcontainers.modalContainer.classList.toggle("active")
 }
 
 function toggleSwatch(event) {
-   document.querySelectorAll(".color-swatch").forEach(swatch => swatch.classList.remove("selected"))
    const currentSwatch = event.target;
+
    if (currentSwatch.classList.contains("color-swatch")) {
+      document.querySelectorAll(".color-swatch").forEach(swatch => swatch.classList.remove("selected"))
       currentSwatch.classList.add("selected")
    }
 }

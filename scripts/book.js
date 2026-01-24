@@ -4,16 +4,17 @@ export default class Book {
     * @param {string} title - The title of the book
     * @param {string} genre - The genre of the book
     * @param {string} author - The author of the book
-    * @param {number} page - The number of pages
-    * @param {number} progress - Reading progress percentage (0-100)
+    * @param {number} totalPage - The total number of pages
+    * @param {number} currentPage - The current page number
     * @param {string} coverColor - Cover color hex code
     */
-   constructor(title, category, author, page, progress = 0, coverColor = '#6366f1') {
+   constructor(title, category, author, totalPage, currentPage = 0, coverColor) {
       this.title = title;
       this.category = category;
       this.author = author;
-      this.page = page;
-      this.progress = progress;
+      this.totalPage = totalPage;
+      this.currentPage = currentPage;
+      this.progress = Math.floor((currentPage / totalPage) * 100);
       this.coverColor = coverColor;
       this.id = crypto.randomUUID();
       this.readInfo = {
