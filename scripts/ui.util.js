@@ -12,6 +12,21 @@ function toggleSidebar() {
 }
 
 function toggleForm() {
+   
+   function clearBookData() {
+      const formInputs = document.querySelectorAll(".form-input");
+      const swacthes = document.querySelectorAll(".color-swatch");
+      debugger
+      formInputs.forEach((form, index) => index === 1 ? form.value = "Fiction" : form.value = "");
+      swacthes.forEach((swatch, index) => index === 0 ? swatch.classList.add("selected") : swatch.classList.remove("selected"))
+   }
+
+   console.log("Calling");
+   clearBookData();
+   const submitBtn = document.querySelector("#modal-submit");
+   if (submitBtn.dataset.mode == "add") submitBtn.textContent = "Add Book"
+   else if (submitBtn.dataset.mode == "edit") submitBtn.textContent = "Update Book"
+   
    UIcontainers.overlay.classList.toggle("active")
    UIcontainers.modalContainer.classList.toggle("active")
 }
