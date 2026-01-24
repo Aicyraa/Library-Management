@@ -26,7 +26,7 @@
    --stats-purple-text: hsl(260, 100%, 60%);
 
    /* Progress Bar */
-   --progress-black: hsl(0, 0%, 0%);
+   --progress-black: hsl(255, 11%, 19%);
    --progress-gray: hsl(216, 12%, 84%);
 
    /* Badge Background */
@@ -67,7 +67,7 @@ body {
    padding: 0.5rem 1.5rem;
    min-height: 3.5rem;
    height: auto;
-   background-color: var(--nav-gray);
+   background-color: var(--background-white);
    border-bottom: 1px solid #e5e7eb;
 }
 
@@ -426,27 +426,14 @@ body {
    justify-content: center;
 }
 
-.card-top.fiction-bg {
-   background-color: var(--fiction-red);
-}
-.card-top.self-help-green-bg {
-   background-color: var(--self-help-green);
-}
-.card-top.self-help-blue-bg {
-   background-color: var(--self-help-blue);
-}
-.card-top.biography-bg {
-   background-color: var(--biography-purple);
-}
-
 .card-top > .settings {
-   background-color: var(--badge-bg);
+   background-color: hsl(210, 19%, 66%, 0.2);
    width: 1.1rem;
    position: absolute;
    padding: 2px;
    border-radius: 4px;
    opacity: 0;
-   transition: 200ms ease-in-out;
+   transition: 100ms ease-in-out;
    transform: scale(.7);
 }
 
@@ -468,6 +455,7 @@ body {
 
 .edit:hover, .delete:hover {
    transform: scale(1.2) !important;
+   background-color: hsl(210, 19%, 89%);
 }
 
 .badge {
@@ -517,6 +505,17 @@ body {
    font-weight: 600;
 }
 
+.book-meta-pages {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 0.4em;
+}
+
+.book-current-page {
+   font-size: .85em;
+}
+
 .progress-section {
    margin-top: auto;
 }
@@ -524,7 +523,7 @@ body {
 .progress-label {
    display: flex;
    justify-content: space-between;
-   font-size: 0.75rem;
+   font-size: 0.6rem;
    color: var(--text-dark);
    font-weight: 600;
    margin-bottom: 0.5rem;
@@ -675,7 +674,7 @@ body {
 }
 
 .form-input::placeholder {
-   color: #9ca3af;
+   color: #9ca3af !important;
 }
 
 /* Color Swatches */
@@ -865,7 +864,7 @@ body {
    }
 
    .form-colors {
-      grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
       gap: 0.4rem;
    }
 

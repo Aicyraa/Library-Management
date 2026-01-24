@@ -15,7 +15,7 @@
       <!-- Modal -->
       <div class="form-modal" id="form-modal">
          <div class="form-modal-header">
-            <h2 class="form-modal-title">Add New Book</h2>
+            <h4 class="form-modal-title">Add New Book</h4>
             <button class="form-modal-close" id="modal-close">
                <img src="svg/close.svg" alt="close" />
             </button>
@@ -23,31 +23,34 @@
          <form class="form-modal-body" id="book-form">
             <div class="form-group">
                <label for="title" class="form-label">Title</label>
-               <input type="text" name="title" id="book-title" class="form-input" placeholder="Enter book title" required />
+               <input type="text" name="title" id="book-title" class="form-input" placeholder="Enter book title"  />
             </div>
             <div class="form-group">
                <label for="category" class="form-label">Category</label>
-               <select name="category" id="book-category" class="form-input">
+               <select name="category" id="book-category" class="form-input" >
                   <option value="Fiction">Fiction</option>
+                  <option value="Sci-Fi">Sci-Fi</option>
                   <option value="Self-Help">Self-Help</option>
                   <option value="History">History</option>
                   <option value="Finance">Finance</option>
                   <option value="Biography">Biography</option>
-                  <option value="Sci-Fi">Sci-Fi</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Technology">Technology</option>
                </select>
             </div>
             <div class="form-group">
                <label for="author" class="form-label">Author</label>
-               <input type="text" name="author" id="book-author" class="form-input" placeholder="Enter author name" required />
+               <input type="text" name="author" id="book-author" class="form-input" placeholder="Enter author name"  />
             </div>
             <div class="form-row">
                <div class="form-group">
-                  <label for="page" class="form-label">Total Pages</label>
-                  <input type="number" name="page" id="book-pages" class="form-input" placeholder="e.g. 320" required />
+                  <label for="totalPage" class="form-label">Total Pages</label>
+                  <input type="number" name="totalPage" id="book-totalPage" class="form-input" placeholder="e.g. 320"  />
                </div>
                <div class="form-group">
-                  <label for="progress" class="form-label">Progress (%)</label>
-                  <input type="number" name="progress" id="book-progress" class="form-input" placeholder="0-100" min="0" max="100" maxlength="3" />
+                  <label for="currentPage" class="form-label">Current Page</label>
+                  <input type="number" name="currentPage" id="book-currentPage" class="form-input" placeholder="e.g. 150" min="0" />
                </div>
             </div>
             <div class="form-group">
@@ -61,11 +64,19 @@
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #2E7D32, #1B5E20)" title="Nature Green"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #E65100, #BF360C)" title="Orange"></span>
                   <span class="color-swatch" data-bg="linear-gradient(135deg, #37474F, #263238)" title="Dark Gray"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #1565C0, #0D47A1)" title="Deep Blue"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #9C27B0, #7B1FA2)" title="Vibrant Purple"></span>
+                  <!-- <span class="color-swatch" data-bg="linear-gradient(135deg, #FF9800, #F57C00)" title="Amber"></span> -->
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #0097A7, #00838F)" title="Cyan"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #7B1FA2, #4A148C)" title="Deep Purple"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #D32F2F, #B71C1C)" title="Bright Red"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #388E3C, #2E7D32)" title="Emerald Green"></span>
+                  <span class="color-swatch" data-bg="linear-gradient(135deg, #1976D2, #1565C0)" title="Sky Blue"></span>
                </div>
             </div>
             <div class="form-actions">
                <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
-               <button type="submit" class="btn btn-primary" id="modal-submit">Add Book</button>
+               <button type="submit" class="btn btn-primary" id="modal-submit" data-mode="add"></button>
             </div>
          </form>
       </div>
@@ -112,14 +123,17 @@
                   <h4 class="sidebar-label">Sort By</h4>
                   <select name="sort" id="sidebar-sort">
                      <option value="title">Title (A-Z)</option>
+                     <option value="title-z">Title (Z-A)</option>
                      <option value="newest">Newest First</option>
+                     <option value="progress">Progress (High-Low)</option>
+                     <option value="progress-asc">Progress (Low-High)</option>
                   </select>
                </div>
 
                <div class="sidebar-divider"></div>
 
                <!-- Categories -->
-               <div class="sidebar-group">
+               <div class="sidebar-group" id="category-parent">
                   <h4 class="sidebar-label">Filter by Category</h4>
                   <div class="sidebar-category">
                      <input type="checkbox" name="categories" class="category" checked />
@@ -128,6 +142,10 @@
                   <div class="sidebar-category">
                      <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Fiction</span>
+                  </div>
+                  <div class="sidebar-category">
+                     <input type="checkbox" name="categories" class="category" />
+                     <span class="category-text">Sci-Fi</span>
                   </div>
                   <div class="sidebar-category">
                      <input type="checkbox" name="categories" class="category" />
@@ -144,6 +162,18 @@
                   <div class="sidebar-category">
                      <input type="checkbox" name="categories" class="category" />
                      <span class="category-text">Biography</span>
+                  </div>
+                  <div class="sidebar-category">
+                     <input type="checkbox" name="categories" class="category" />
+                     <span class="category-text">Mystery</span>
+                  </div>
+                  <div class="sidebar-category">
+                     <input type="checkbox" name="categories" class="category" />
+                     <span class="category-text">Romance</span>
+                  </div>
+                  <div class="sidebar-category">
+                     <input type="checkbox" name="categories" class="category" />
+                     <span class="category-text">Technology</span>
                   </div>
                </div>
             </div>
@@ -215,44 +245,8 @@
                   </div>
                </div>
             </div>
-
-            <!-- Books Grid -->
-            <div class="books">
-               <!-- Book 1 -->
-
-               <div class="book-card">
-                  <div class="card-top self-help-green-bg">
-                     <img class="settings edit" src="svg/edit.svg" alt="" />
-                     <img class="settings delete" src="svg/delete.svg" alt="">
-                     <div class="badge">Self-Help</div>
-                     <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="translate(50, 50) scale(1.5)">
-                           <path d="M 0 -7 v 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                           <path d="M -9 6 a 1 1 0 0 1 -1 -1 V -8 a 1 1 0 0 1 1 -1 h 5 a 4 4 0 0 1 4 4 a 4 4 0 0 1 4 -4 h 5 a 1 1 0 0 1 1 1 v 13 a 1 1 0 0 1 -1 1 h -6 a 3 3 0 0 0 -3 3 a 3 3 0 0 0 -3 -3 z" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                     </svg>
-                  </div>
-                  <div class="card-bottom">
-                     <h3 class="book-title">Atomic Habits</h3>
-                     <div class="book-meta">
-                        <img class="book-meta-icon" src="svg/person.svg" alt="" />
-                        <span class="book-author">James Clear</span>
-                        <img class="book-meta-icon" src="svg/page.svg" alt="" />
-                        <span class="book-pages">320 pages</span>
-                     </div>
-                     <div class="progress-section">
-                        <div class="progress-label">
-                           <span>Reading Progress</span>
-                           <span>100%</span>
-                        </div>
-                        <div class="progress-bar">
-                           <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-            </div>
+            <!-- Book Grid -->
+            <div class="books"></div>
          </div>
       </div>
    </body>

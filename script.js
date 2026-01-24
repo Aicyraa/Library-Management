@@ -1,7 +1,10 @@
-import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/ui.util.js";
-import { storageUtil } from "./scripts/storage.util.js";
-import UIcontainers from "./scripts/ui.util.js";
-import Book from "./scripts/book.js";
+import { saveBookData, setInputData, modifyBookData } from "./scripts/util.func.js";
+import { storageUtil } from "./scripts/util.storage.js";
+import { toggleSidebar, toggleForm, toggleSwatch } from "./scripts/util.ui.js";
+import UIcontainers from "./scripts/util.ui.js";
+import { debounce, throttle } from "./scripts/util.wrapper.js"
+import { bookSearch, bookArrange, bookSort } from "./scripts/util.filters.js";
+
 
 const UIbtns = {
    overlay: document.querySelector(".overlay"),
@@ -12,57 +15,31 @@ const UIbtns = {
    addBook: document.querySelector("#modal-submit"),
 };
 
-function generateColor() {
+const filterElements = {
+   search: document.querySelector("#sidebar-search"),
+   sortArrange: document.querySelector("#sidebar-sort"),
+   sortCategory: document.querySelector("#category-parent"),
+}
+
+function renderColor() {
    document.querySelectorAll(".color-swatch").forEach((color) => {
       const bgColor = color.dataset.bg;
       color.style.background = bgColor;
    });
 }
 
-function getBookData(formClose) {
-   function setData() {
-      const bookData = {};
-      document.querySelectorAll(".form-input").forEach((input) => {
-         bookData[input.name] = input.value;
-      });
-
-      document.querySelectorAll(".color-swatch").forEach((swatch) => {
-         if (swatch.classList.contains("selected")) {
-            bookData["bgColor"] = swatch.dataset.bg;
-         }
-      });
-      return bookData;
-   }
-
-   return function () {
-      const bookData = setData();
-      console.log(bookData);
-
-      const newBook = new Book(
-         bookData.title,
-         bookData.author,
-         bookData.page,
-         bookData.category,
-         bookData.progress,
-         bookData.bgColor,
-      );
-
-      storageUtil.set([...storageUtil.get(), newBook]);
-      formClose();
-   };
-}
-
-function generateBookData() {
+function renderBookData(booksData) {
    UIcontainers.bookContainer.innerHTML = "";
-   storageUtil.get().forEach(book => {
+   booksData.forEach(book => {
       const bookCard = document.createElement("div")
+      bookCard.dataset.id = book.id
       bookCard.className = "book-card";
       bookCard.innerHTML = 
          `
-         <div class="card-top data-id="${book.id}" style="background:${book.coverColor};" >
+         <div class="card-top" style="background:${book.coverColor};">
             <img class="settings edit" src="svg/edit.svg" alt="" />
             <img class="settings delete" src="svg/delete.svg" alt="">
-            <div class="badge">${book.genre}</div>
+            <div class="badge">${book.category}</div>
             <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                <g transform="translate(50, 50) scale(1.5)">
                   <path d="M 0 -7 v 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -76,7 +53,10 @@ function generateBookData() {
                <img class="book-meta-icon" src="svg/person.svg" alt="" />
                <span class="book-author">${book.author}</span>
                <img class="book-meta-icon" src="svg/page.svg" alt="" />
-               <span class="book-pages">${book.page} pages</span>
+               <div class="book-meta-pages"> 
+                  <span class="book-total-page">${book.totalPage} pages</span>
+                  <span class="book-current-page">(${book.currentPage}/${book.totalPage})</span>
+               </div>
             </div>
             <div class="progress-section">
                <div class="progress-label">
@@ -93,15 +73,52 @@ function generateBookData() {
    });
 }
 
+function bookEdit(parent) {
+   const currentElData = storageUtil.get().filter(book => book.id === parent.dataset.id)[0];
+   window.targetEditID = currentElData.id
+   toggleForm()
+   setInputData(currentElData);
+}
+
+function bookRemove(parent) {
+   const newBookData = storageUtil.get().filter(book => book.id !== parent.dataset.id)
+   storageUtil.set(newBookData);
+   parent.remove();
+}
+
+function renderStatistics() {
+   const books = storageUtil.get();
+   const statValues = document.querySelectorAll(".status-value");
+
+   const totalBooks = books.length;
+   const completed = books.filter(book => book.progress === 100).length;
+   const inProgress = books.filter(book => book.progress > 0 && book.progress < 100).length;
+   const avgProgress = totalBooks === 0
+      ? 0
+      : Math.round(books.reduce((sum, book) => sum + book.progress, 0) / totalBooks);
+
+   statValues[0].textContent = totalBooks;
+   statValues[1].textContent = completed;
+   statValues[2].textContent = inProgress;
+   statValues[3].textContent = `${avgProgress}%`;
+}
+
 (function () {
-   generateColor();
-   generateBookData();
+   renderColor();
+   renderBookData(storageUtil.get());
+   renderStatistics();
 
    UIbtns.sidebarBtns.forEach((btns) => btns.addEventListener("click", toggleSidebar));
    UIbtns.modalAddBtn.addEventListener("click", toggleForm);
    UIbtns.modalCloseBtn.addEventListener("click", toggleForm);
    UIbtns.modalCancelBtn.addEventListener("click", toggleForm);
    UIbtns.overlay.addEventListener("click", toggleForm);
-   UIbtns.addBook.addEventListener("click", getBookData(toggleForm));
    UIcontainers.colorContainer.addEventListener("click", toggleSwatch);
+   UIcontainers.bookContainer.addEventListener("click", modifyBookData(bookRemove, bookEdit))
+   UIbtns.addBook.addEventListener("click", saveBookData(toggleForm, renderBookData));
+
+   // filter
+   filterElements.search.addEventListener("input", debounce(bookSearch(renderBookData), 300));
+   filterElements.sortArrange.addEventListener("change", bookArrange(renderBookData));
+   filterElements.sortCategory.addEventListener("click", throttle(bookSort(renderBookData), 200))
 })();
