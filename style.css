@@ -123,10 +123,7 @@ body {
    flex-direction: column;
    padding: 1.5rem;
    overflow-y: auto;
-   transition:
-      width 0.3s ease,
-      padding 0.3s ease,
-      transform 0.3s ease;
+   transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
    position: relative;
    z-index: 10;
 }
@@ -288,15 +285,9 @@ body {
 
 .book-navbar {
    display: flex;
-   justify-content: space-between;
+   justify-content: start;
    align-items: center;
    margin-bottom: 2rem;
-}
-
-#book-navbar-count {
-   font-size: 1.5rem;
-   font-weight: 700;
-   color: var(--text-dark);
 }
 
 #book-navbar-add {
@@ -544,10 +535,6 @@ body {
    border-radius: 4px;
 }
 
-/* ==================== */
-/* Modal & Overlay Styles */
-/* ==================== */
-
 .overlay {
    position: fixed;
    top: 0;
@@ -771,9 +758,6 @@ body {
       /* no special right padding needed if button is in flow */
    }
 
-   /* Navbar Text: Allow wrap */
-   /* Default behavior with min-height works. */
-
    /* Sidebar Overlay behavior */
    .sidebar-container {
       position: absolute;
@@ -794,9 +778,6 @@ body {
    }
 
    /* Book Navbar responsive */
-   .book-navbar {
-      gap: 1rem;
-   }
 
    #book-navbar-add {
       padding: 0.4rem 0.8rem;
