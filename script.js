@@ -86,9 +86,27 @@ function bookRemove(parent) {
    parent.remove();
 }
 
+function renderStatistics() {
+   const books = storageUtil.get();
+   const statValues = document.querySelectorAll(".status-value");
+
+   const totalBooks = books.length;
+   const completed = books.filter(book => book.progress === 100).length;
+   const inProgress = books.filter(book => book.progress > 0 && book.progress < 100).length;
+   const avgProgress = totalBooks === 0
+      ? 0
+      : Math.round(books.reduce((sum, book) => sum + book.progress, 0) / totalBooks);
+
+   statValues[0].textContent = totalBooks;
+   statValues[1].textContent = completed;
+   statValues[2].textContent = inProgress;
+   statValues[3].textContent = `${avgProgress}%`;
+}
+
 (function () {
    renderColor();
    renderBookData(storageUtil.get());
+   renderStatistics();
 
    UIbtns.sidebarBtns.forEach((btns) => btns.addEventListener("click", toggleSidebar));
    UIbtns.modalAddBtn.addEventListener("click", toggleForm);
